@@ -1,0 +1,1419 @@
+<!--Artificial Intelligence 
+- Effort to automate intellectual tasks normally performed by humans.
+-In 1950, there was a question asked by scientists and researchers, can computers think? Can we get them to figure things out rather than hard coding?
+-Back then AI was like tic tac toe or chess
+-Very good idea is tons of rules humans implimented into a program, some half a million lines of code with tons of rules.
+-A.I. can be simple or complex. It is trying to simulate some tasks like playing a game like humans do
+-Like pac man where ghosts use a path finding algorithm to find player
+
+Machine Learning
+-Machine learning is first field that figure out rules for humans
+-Rather than hardcoding rules into computer, matchine learning takes data, what the output should be and figure out rules for us.
+-Often machine learning requires lots of data, requires ton of examples and input data to train a good model. Reason for this is because it generates rules for us.
+-User gives it input data, what output data should be and it looks at that info and figures out what rules can generate
+
+Classical Programming
+Data + Rules > Answers
+Machine Learning Programming
+Data + Answers > Rules
+
+A lot of time machine learning does not have 100% accuracy so may not get correct answer every time
+
+Goal when creating machine learning models is to raise accuracy as high as possible so it makes fewest mistakes possible
+
+Machine Learning Summary
+Rather than giving program rules, algorithm finds rules for us.
+-Might not know explicitly what the rules are, but you give it input data, expected output data, looks at that, does some algorithm and figures out rules.
+-When giving it some input data and don't know output data, can use rules to figure it out from examples and all training data to generate some output.
+
+Neaural Networks or Deep Learning
+A form of machine learning that uses a layered representation of data
+
+Input Layer, output later
+Feed input to set of rules and something happens
+
+Neural networks has 2 layers
+1 Input Layer
+2 Layers inbetween layer 1 and output Layer that are all connected together
+3 Output layer
+Essentially hard data is transformed through different layers different things happen with different connections between layers and eventually reach output. Neural network has multiple layers also know has multi-stage information extraction process.
+So what hppanes is data at first layer which is input info passed to model and do something with > then goes to another layer where it is transformed into something else using predefined rules and weights > Passes through all different layers different kind of features of data > will be extracted, figured out and found until eventually reach an output layer where everything is combined discovered about data into an output that's meaningful to program.
+AI does not need predefined set of layers, standard machine learning has one or two layers.
+Neural Networks are not modeled after brain where neurons or firing off in brain which relates to neural networks but there is a biological inspiration. Humans don't understand enough abot how information happens and transfers through our brain.
+
+Data
+Most important part of machine learning, ai, machine learning, understanding different parts of data is important and is referenced a lot in any resources used.
+
+Example data set about studends final grades
+-Midterm 1 - grade: Student 1 70, Student 2 60, Student 3 40
+-Midterm 2 - grade Student 1 80, Student 2 90, Student 3 50
+-Final grade - Student 1 77, Student 2 84, Student 3 38
+
+How to use this information to predict any one of midterm 1, midterm 2, final grade
+Example Midterm 1, final to predict miderm 2
+
+Features and lables
+Feature being midterm 1, final because it is info used to predict something as input
+Label 
+Midterm 2 - output -Simply what looking for or trying to predict
+Feeding features to model gives label.
+
+Data
+Important because key used to create models. AI, machine learning needs data unless doing very specific type of machine learning and ai.
+Most models need tons of data, examples because it is how machine learning works.
+
+Nachine learning- coming up with rules for data set. 
+Input info > output info, features labels > give to model and start training > comes up with rules so user can give it features to model and gives good estimate of what output should be
+
+Training - Set of training data with all features, labels > test and use model later on
+
+
+
+Intro to TensorFlow B
+
+Tensors
+A tensor is a generalization of vectors and matrices to potentially higher dimensions. Internally, TensorFlow represents tensors as n-dimensional arrays of base datatypes.
+
+it shouldn't surprise you that tensors are a fundemental aspect of tensorFlow. they are the main objects that are passed around and manipulated throughout the program. Each tensor represents a partially defined computation that will eventually product a value. TensorFlow programs work by building a graph of Tensor objects that details how tensors are related. running different parts of the graph that allow results to be generated.
+
+Each tensor has a data type and a shape.
+
+When writing a TensorFlow program, the main object you manipulate and pass around is the tf.Tensor. A tf.Tensor object represents a partially defined computation that will eventually produce a value.
+
+TensorFlow programs work by first building a graph of tf.Tensor objects, detailing how each tensor is computed based on the other available tensors and then by running parts of this graph to achieve the desired results.
+
+Essentially all it is a vector generalized to higher dimensions
+
+Vector is a data point.
+Called a vector because it doesn't have certain coordinates
+has x1 value and x2 value
+
+Vector has 2 dimensional datapoint like x and y or x1 value x2 value
+Have any amount of dimensions in it
+1 dimension means 1 number
+2 dimensions means 2 numbers like x and y value
+2 dimensional graph 
+3 dimensions for a 3 dimensional graph (3 data points)
+4 dimensions for image and video data
+5 dimensions
+
+Tensors are important to tensor flow
+Main object to work with, manipulate and view and passed around through program
+Each tensor represents a partially defined computation that will eventually produce a value
+When program is created, create a bunch of tensors and TensorFlow is created as well.
+These store partially defined computations in the graph.
+
+After building graph and have session running, run different parts of graph and execute different tensors and get different results from tensors. Each tensor has data type and shape.
+Data type is what kind of info is stored in tensor.
+Rate to see any data type different than numbers but there is strings and others. Examples float32, int32, string etc.
+Shape: Represents dimensions of data
+
+Creating tensors
+How to create some different tensors:
+string = tf.Variable("this is a string", tf.string)  
+number = if.Variable(324, tf.int16)
+floating = tf.Variable(3.567, tf.float64)
+
+string tensor - variable, value, datatype
+number tensor - variable, number, int value
+floating point tensor, variable, floating point, data type
+
+Tensors have a shape of 1 meaning they're a scalar. Scalar value means 1 value.
+Vector means more than one value
+Metrices it goes up
+
+Rank/Degree of Tensors
+Another word for rank is degree, these terms simply mean the number of dimensions involved in the tensor. What's created above is a tensor of rank 0 , also known as a scalar because like string above is 0 dimensions
+
+rank1_tensor = tf.Variable(["Test"], tf.string) //array or list is immediately rank 1 because it can store more than one value in one dimension. 1 list, 1 array means 1 dimension even with 3 values in array and is also like vector.
+rank2_tensor = tf.Variable([["test", "ok"], ["test", "yes"]]) //Rank 2 tensor - list inside list in this case multiple lists inside list
+
+To determine rank of tensor call following method
+tf.rank(rank2_tensor)
+run: <tf.Tensor: shape=(), dtype=int32, numpy=2>
+shape is blank, rank 2 tensor, numpy 2 means rank 2
+
+tf.rank(rank1_tensor)
+<tf.Tensor: shape=(), dtype=int32, numpy=1> //numpy 1 is rank 1
+
+tf.rank(number)
+<tf.Tensor: shape=(), type=int32, numpy=0> //rank 0
+
+Shape of Tensors
+Now that we've talked about the rnak of tensors it's time to talk about the shape. The shape of a tensor is simply the amount of elements that exist in each dimension. TensorFlow will try to dtermine the shape of a tensor but sometimes it may be unknown.
+
+To get shape of a tensor use shape attribute
+rank2_tensor.shape
+TensorShape([2, 2]) //2 elements in first dimension, 2 elements in second dimension. [2, 3] would be 3 items in each list instead of 2. [3, 3] would be 3 lists 3 times
+
+rank1_tensor.shape
+TensorShape([3])
+
+Changing Shape
+The number of elements of a tensor is the product of the sizes of all its shapes. Tehre are often many shapes that have same number of elements making it convient to be able to change shape of a tensor
+tensor1 = tf.ones([1,2,3]) # tf.ones() creates a shape [1,2,3] tensor full of ones
+tensor2 = tf.reshape(tensor1, [2,3,1]) # reshape existing data to shape [2,3,1]
+tensor3 = tf.reshape(tensor2, [3, -1]) # -1 tells the tensor to calculate size of dimension in that place. This will reshape tensor to [3,2]
+#-1 is going to be 2
+#Number of elements in reshaped tensor must match number in original
+#tf.reshape give tensor and shape to change to. 
+#shape needs to be valid and with equal elements. used a lot in TensorFlow
+
+Look at different tensors
+print(tensor1)
+tf.Tensor(
+[[[1. 1. 1.]
+  [1. 1. 1.]]], shape=(1, 2, 3), dtype=float32 # 1 interior list, 2 lists inside list, each list have 3 elements. 6 elements total
+)
+
+print(tensor2)
+tf.tensor(
+[[[1.]
+  [1.]
+  [1.]]
+)
+
+[[1.]
+ [1.]
+ [1.]]], shape=(2, 3, 1), dtpye=float32) #2 lists, inside of each list is 3 lists, inside of each of those lists is 1 element
+
+ print(tensor3)
+tf.Tensor(
+[[1. 1.]
+ [1. 1]
+ [1. 1]], shape=(3, 2) dtype=float32 # 3 lists, 6 elements (3 * 2 = 6 elements in Tensor)
+)
+
+
+Types of tensors
+There are different types of tensors. These are most commonly used 
+-Variable
+-Constant
+-Placeholder
+-SparseTensor
+With the exception of Variables all of these tensors are immutable, meaning their value may not change during execution.
+For now it is sufficient to understand that we use the Variable tensor when we want to potentially change the value of our tensor.
+
+Evaluating Tensors
+There will be some times throughout this guide with need to evaluate a tensor. In other words, get its value. Since tensors represent a partially complete computation we will sometimes need to run what's called a session to evaluate the tensor.
+
+There are many different ways to achieve this but simplest is noted below
+ [ ] with tf.Session() as sess: # creates a session using default graph
+    tensor.eval() # tensor will of course be the name of your tensor
+In the code above the tensor variable that was stored in default graph. Default graph holds all operations not specified to any other graph. It is possible to create our own seperate graphs but for now we will stick with default.
+-Evaluate tensor object to do something else
+-Use default block of code above to do so
+-Eval will have Tensorflow figure out what it needs to do to find value of tensor. It evaluates it, and then allows to user to actually use value
+
+Source:
+https://www.tensorflow.org/guide/tensor
+
+Examples
+%tensorflow_version 2.x
+import tensorflow as tf
+print(tf.version)
+Run
+TensorFlow 2.x selected.
+<module 'tensorflow_core._api.v2.version' from '/tensorflow-2.1.0/python3.6/tensorflow_core/_api/v2/version/__init__.py'>
+
+%tensorflow_version 2.x
+import tensorflow as tf
+print(tf.version)
+
+t = tf.ones() #creates all values to be ones
+or 
+t = tf.zeros(5,5,5,5) #all values zeros. to figure out how many elements multiple values (5*5*5*5) 625
+Run
+tf.Tensor(
+[[[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+ 
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+ 
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+ 
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+ 
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+
+[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]]] shape=(5, 5, 5, 5), dtype=float32)
+
+t = tf.reshape(t, [625])
+print(t)
+
+Run
+tf.Tensor(
+[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.], shape=(625,), dtype=float32)
+)
+
+or 
+t = tf.reshape(t, [125, -1]) #-1 means tensor flow will infer what shape needs to be (5)
+tf.Tensor(
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]
+[0. 0. 0. 0. 0.]], shape=(125, 5), dtype=float32)
+
+
+TensorFlow Core Learning Algorithms
+
+https://colab.research.google.com/drive/15Cyy2H7nT40sGR7TBN5wBvgTd57mVKay#scrollTo=jQ_SJAMuiF6p
+Machine learning algorithms discussed
+Linear Regression
+Classification
+Clustering
+Hidden Markov Models
+
+Algorithms are applied to unique problems and datasets
+
+
+ y = mx + b
+ b is y intercept where line starts
+ b = 0.4 on beginning of y scale
+ mx and y stand for coordinates of data point
+ (x, y) (2, 2.7)
+ m is the slope
+ m is steepness of line
+ calculate slope with rise over run
+ rise over run means how much went up vs how much went across
+
+calculate slope with right triangle on line and pick 2 data points
+divide distance up by distance across to get slope
+
+line of best fit
+line that gets as close to every data point as possible
+have same amount of data points on left side and right side
+equation for line:
+y = 1.5x + 0.5
+x = 2 
+what y would be if x = 2
+y = 1.5(2) + 0.5
+answer: 3.5
+
+Reverse
+y = 2.7
+x = 1.5y + 0.5
+x = 1.5(2.7) + 0.5
+
+3 dimension lines x y z
+with data points
+x and y are known, zed
+as long as 2 values are given, third can be predicted
+x, y > z
+z, y > x
+
+!pip install -q sklearn
+%tensorflow_version 2.x  # this line is not required unless you are in a notebook
+
+from __future__ import absolute_import, division, print_function, unicode_literals
+
+import numpy as np #optimized version of arrays in python, multidimensional calculations
+import pandas as pd #data analytics tool, very easily manipulate data, load and view datasets, cut columns and rows from dataset
+import matplotlib.pyplot as plt #visiulization of graphs and charts
+from IPython.display import clear_output #specific to notebook for clearing output
+from six.moves import urllib
+
+import tensorflow.compat.v2.feature_column as fc #feature column needed to create linear regression algorithm
+
+import tensorflow as tf #
+
+
+
+
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = [1, 2, 2.5, 3, 4]
+y = [1, 4, 7, 9, 15]
+plt.plot(x, y, 'ro')
+plt.axis([0, 6, 0, 20])
+run
+(0.0, 6.0, 0.0, 20.0)
+
+plt.plot(x, y, 'ro')
+plt.axis([0, 6, 0, 20])
+plt.plot(np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)))
+plt.show()
+
+
+CATEGORICAL_COLUMNS = ['sex', 'n_siblings_spouses', 'parch', 'class', 'deck',
+                       'embark_town', 'alone']
+NUMERIC_COLUMNS = ['age', 'fare']
+
+feature_columns = []
+for feature_name in CATEGORICAL_COLUMNS:
+  vocabulary = dftrain[feature_name].unique()  # gets a list of all unique values from given feature column
+  feature_columns.append(tf.feature_column.categorical_column_with_vocabulary_list(feature_name, vocabulary)) #feature columns for linear regression, feature_name to loop through, all vocabulary associated with it, create model using these columns such as linear model, this is tensorflow 2.0
+
+for feature_name in NUMERIC_COLUMNS:
+  feature_columns.append(tf.feature_column.numeric_column(feature_name, dtype=tf.float32)) #numeric is easier, only requires feature_name and data type, no unique value necessary
+
+print(feature_columns) 
+#[VocabularyListCategoricalColumn(key='sex', vocabulary_list=('male', 'female'), dtype=tf.string, default_value=-1, num_oov_buckets=0), VocabularyListCategoricalColumn(key='n_siblings_spouses', vocabulary_list=(1, 0, 3, 4, 2, 5, 8), dtype=tf.int64, default_value=-1, num_oov_buckets=0), VocabularyListCategoricalColumn(key='parch', vocabulary_list=(0, 1, 2, 5, 3, 4), dtype=tf.int64, default_value=-1, num_oov_buckets=0), VocabularyListCategoricalColumn(key='class', vocabulary_list=('Third', 'First', 'Second'), dtype=tf.string, default_value=-1, num_oov_buckets=0), VocabularyListCategoricalColumn(key='deck', vocabulary_list=('unknown', 'C', 'G', 'A', 'B', 'D', 'F', 'E'), dtype=tf.string, default_value=-1, num_oov_buckets=0), VocabularyListCategoricalColumn(key='embark_town', vocabulary_list=('Southampton', 'Cherbourg', 'Queenstown', 'unknown'), dtype=tf.string, default_value=-1, num_oov_buckets=0), VocabularyListCategoricalColumn(key='alone', vocabulary_list=('n', 'y'), dtype=tf.string, default_value=-1, num_oov_buckets=0), NumericColumn(key='age', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None), NumericColumn(key='fare', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None)qq1]
+
+Let's break this code down a little bit...
+
+Essentially what we are doing here is creating a list of features that are used in our dataset.
+
+The cryptic lines of code inside the append() create an object that our model can use to map string values like "male" and "female" to integers. This allows us to avoid manually having to encode our dataframes.
+
+And here is some relevant documentation
+
+https://www.tensorflow.org/api_docs/python/tf/feature_column/categorical_column_with_vocabulary_list?version=stable
+
+The Training Process
+So, we are almost done preparing our dataset and I feel as though it's a good time to explain how our model is trained. Specifically, how input data is fed to our model.
+
+For this specific model data is going to be streamed into it in small batches of 32. This means we will not feed the entire dataset to our model at once, but simply small batches of entries. We will feed these batches to our model multiple times according to the number of epochs.
+
+An epoch is simply one stream of our entire dataset. The number of epochs we define is the amount of times our model will see the entire dataset. We use multiple epochs in hope that after seeing the same data multiple times the model will better determine how to estimate it.
+
+Ex. if we have 10 ephocs, our model will see the same dataset 10 times.
+
+Since we need to feed our data in batches and multiple times, we need to create something called an input function. The input function simply defines how our dataset will be converted into batches at each epoch.
+
+Input Function
+The TensorFlow model we are going to use requires that the data we pass it comes in as a tf.data.Dataset object. This means we must create a input function that can convert our current pandas dataframe into that object.
+
+Below you'll see a seemingly complicated input function, this is straight from the TensorFlow documentation (https://www.tensorflow.org/tutorials/estimator/linear). I've commented as much as I can to make it understandble, but you may want to refer to the documentation for a detailed explination of each method.
+
+
+def make_input_fn(data_df, label_df, num_epochs=10, shuffle=True, batch_size=32): #pandas data frame, y_train_eval, number of epochs, shuffle to mix up or not, batch size how many elements to give to model to train at once
+  def input_function():  # inner function, this will be returned, input function inside function
+    ds = tf.data.Dataset.from_tensor_slices((dict(data_df), label_df))  # create tf.data.Dataset object with data and its label, elements are slices of given tensors, tensors sliced along first dimension
+    if shuffle:
+      ds = ds.shuffle(1000)  # randomize order of data, shuffles data in set
+    ds = ds.batch(batch_size).repeat(num_epochs)  # split dataset into batches of 32 and repeat process for number of epochs, split into 10 blocks
+    return ds  # return a batch of the dataset
+  return input_function  # return a function object for use
+
+train_input_fn = make_input_fn(dftrain, y_train)  # here we will call the input_function that was returned to us to get a dataset object we can feed to the model, create with function
+eval_input_fn = make_input_fn(dfeval, y_eval, num_epochs=1, shuffle=False), # no data shuffle cause not training it.
+#train_inout_fn() would call def make_input_fn
+
+
+Creating the Model
+In this tutorial we are going to use a linear estimator to utilize the linear regression algorithm.
+
+Creating one is pretty easy! Have a look below.
+
+linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns) #uses feature columns above, all core learning algorithms use estimators
+# We create a linear estimtor by passing the feature columns we created earlier.
+
+
+
+Training the Model
+Training the model is as easy as passing the input functions that we created earlier.
+
+linear_est.train(train_input_fn)  # train, grab input and train model
+result = linear_est.evaluate(eval_input_fn)  # get model metrics/stats by testing on tetsing data, evaluate and stored in result variable
+
+clear_output()  # clears consoke output, clear console output imported above
+print(result['accuracy'])  # the result variable is simply a dict of stats about our model #Run 0.7386364. accuracy changes every time. changing epoch changes accuracy goal is to get most accurate one with machine learning
+print(result) #shows different accuracy information
+
+
+TensforFlows are better with working with a lot of data
+
+How to make prediction for every point in data set
+
+result = list(linear_est.predict(eval_input_func))
+print(result)
+print(result[0])
+#as seen in print(result) print(result[0])
+print(result[0]['probabilities'])
+Run:
+[0.9664972 0.3350275] #death and survival rate, 0 didn't survive, 1 did
+
+print(dfeval.loc[0]) #shows 1 person
+
+
+result = list(linear_est.predict(eval_input_func))
+print(dfeval.loc[3]) #shows 1 person
+print(y_eval.loc[3]) #survived or not
+print(result[3]['probabilities'][1])
+#38% chance of survival
+
+result = list(linear_est.predict(eval_input_func))
+print(dfeval.loc[4]) #shows 1 person
+print(y_eval.loc[4]) #survived or not
+print(result[4]['probabilities'][1])
+
+
+
+##Classification
+Now that we've covered linear regression it is time to talk about classification. Where regression was used to predict a numeric value, classification is used to seperate data points into classes of different labels. In this example we will use a TensorFlow estimator to classify flowers.
+
+Since we've touched on how estimators work earlier, I'll go a bit quicker through this example. 
+
+This section is based on the following guide from the TensorFlow website.
+https://www.tensorflow.org/tutorials/estimator/premade
+
+code
+%tensorflow_version 2.x  # this line is not required unless you are in a notebook
+from __future__ import absolute_import, division, print_function, unicode_literals
+
+
+import tensorflow as tf
+
+import pandas as pd
+
+
+
+Dataset
+This specific dataset seperates flowers into 3 different classes of species.
+
+Setosa
+Versicolor
+Virginica
+The information about each flower is the following.
+
+sepal length
+sepal width
+petal length
+petal width
+
+
+code
+CSV_COLUMN_NAMES = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'Species']
+SPECIES = ['Setosa', 'Versicolor', 'Virginica']
+# Lets define some constants to help us later on
+
+train_path = tf.keras.utils.get_file(
+    "iris_training.csv", "https://storage.googleapis.com/download.tensorflow.org/data/iris_training.csv")
+test_path = tf.keras.utils.get_file(
+    "iris_test.csv", "https://storage.googleapis.com/download.tensorflow.org/data/iris_test.csv")
+
+train = pd.read_csv(train_path, names=CSV_COLUMN_NAMES, header=0) #apply column names, row 0 is header
+test = pd.read_csv(test_path, names=CSV_COLUMN_NAMES, header=0)
+# Here we use keras (a module inside of TensorFlow) to grab our datasets and read them into a pandas dataframe
+
+train.head()
+
+
+SepalLength	SepalWidth	PetalLength	PetalWidth	Species
+0	6.4	2.8	5.6	2.2	2
+1	5.0	2.3	3.3	1.0	1
+2	4.9	2.5	4.5	1.7	2
+3	4.9	3.1	1.5	0.1	0
+4	5.7	3.8	1.7	0.3	0
+
+
+
+train_y = train.pop('Species')
+test_y = test.pop('Species')
+train.head() # the species column is now gone
+
+
+SepalLength	SepalWidth	PetalLength	PetalWidth
+0	6.4	2.8	5.6	2.2
+1	5.0	2.3	3.3	1.0
+2	4.9	2.5	4.5	1.7
+3	4.9	3.1	1.5	0.1
+4	5.7	3.8	1.7	0.3
+
+
+
+train.shape  # we have 120 entires with 4 features
+(120, 4)
+
+
+Input Function
+Remember that nasty input function we created earlier. Well we need to make another one here! Fortunatly for us this one is a little easier to digest.
+
+def input_fn(features, labels, training=True, batch_size=256):
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+
+    # Shuffle and repeat if you are in training mode.
+    if training:
+        dataset = dataset.shuffle(1000).repeat()
+    
+    return dataset.batch(batch_size)
+
+
+
+  
+
+CSV_COLUMN_NAMES = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'Species']
+SPECIES = ['Setosa', 'Versicolor', 'Virginica']
+# Lets define some constants to help us later on
+
+train_path = tf.keras.utils.get_file(
+    "iris_training.csv", "https://storage.googleapis.com/download.tensorflow.org/data/iris_training.csv")
+test_path = tf.keras.utils.get_file(
+    "iris_test.csv", "https://storage.googleapis.com/download.tensorflow.org/data/iris_test.csv")
+
+train = pd.read_csv(train_path, names=CSV_COLUMN_NAMES, header=0) #apply column names, row 0 is header
+test = pd.read_csv(test_path, names=CSV_COLUMN_NAMES, header=0)
+# Here we use keras (a module inside of TensorFlow) to grab our datasets and read them into a pandas dataframe
+
+def input_fn(features, labels, training=True, batch_size=256): #no epochs and batch size is different
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels)) #pass in features and labels
+
+    # Shuffle and repeat if you are in training mode.
+    if training:
+        dataset = dataset.shuffle(1000).repeat() #shuffle info and repeat that process
+    
+    return dataset.batch(batch_size) #256
+
+
+#Create and modify these to make own model
+
+Feature Columns
+And you didn't think we forgot about the feature columns, did you?
+
+# Feature columns describe how to use the input.
+my_feature_columns = []
+for key in train.keys(): #loop through keys in training data set
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key)) #equal to key looping through
+print(my_feature_columns)
+#[NumericColumn(key='SepalLength', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None), NumericColumn(key='SepalWidth', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None), NumericColumn(key='PetalLength', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None), NumericColumn(key='PetalWidth', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None)]
+
+%tensorflow_version 2.x  # this line is not required unless you are in a notebook
+
+from __future__ import absolute_import, division, print_function, unicode_literals
+
+
+import tensorflow as tf
+
+import pandas as pd
+
+
+
+CSV_COLUMN_NAMES = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'Species']
+SPECIES = ['Setosa', 'Versicolor', 'Virginica']
+# Lets define some constants to help us later on
+
+train_path = tf.keras.utils.get_file(
+    "iris_training.csv", "https://storage.googleapis.com/download.tensorflow.org/data/iris_training.csv")
+test_path = tf.keras.utils.get_file(
+    "iris_test.csv", "https://storage.googleapis.com/download.tensorflow.org/data/iris_test.csv")
+
+train = pd.read_csv(train_path, names=CSV_COLUMN_NAMES, header=0) #apply column names, row 0 is header
+test = pd.read_csv(test_path, names=CSV_COLUMN_NAMES, header=0)
+# Here we use keras (a module inside of TensorFlow) to grab our datasets and read them into a pandas dataframe
+
+def input_fn(features, labels, training=True, batch_size=256): #no epochs and batch size is different
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels)) #pass in features and labels
+
+    # Shuffle and repeat if you are in training mode.
+    if training:
+        dataset = dataset.shuffle(1000).repeat() #shuffle info and repeat that process
+    
+    return dataset.batch(batch_size) #256
+# Feature columns describe how to use the input.
+my_feature_columns = []
+for key in train.keys(): #loop through keys in training data set, gives all columns
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key)) #equal to key looping through
+print(my_feature_columns)
+#[NumericColumn(key='SepalLength', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None), NumericColumn(key='SepalWidth', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None), NumericColumn(key='PetalLength', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None), NumericColumn(key='PetalWidth', shape=(1,), default_value=None, dtype=tf.float32, normalizer_fn=None)]
+
+
+
+
+
+
+Building the Model
+And now we are ready to choose a model. For classification tasks there are variety of different estimators/models that we can pick from. Some options are listed below.
+
+2 main choices
+DNNClassifier (Deep Neural Network) #better choice
+LinearClassifier #similar to linear regression except it does classification rather than regression. Get labels rather than numeric value
+
+Not difficult to change choice because most building comes from loading and preprocessing data.
+
+There's hundreds of different classification models to use that are premade for TensorFlow.
+
+We can choose either model but the DNN seems to be the best choice. This is because we may not be able to find a linear coorespondence in our data.
+
+So let's build a model!
+# Build a DNN with 2 hidden layers with 30 nodes and 10 hidden nodes each.
+classifier = tf.estimator.DNNClassifier( #estimator stores lotes of pre made models from TensorFlow and DNNClassifier is one of them
+    feature_columns=my_feature_columns, #pass in feature_columns
+    # Two hidden layers of 30 and 10 nodes respectively. Hidden units is building architecture of neaural network
+    hidden_units=[30, 10],
+    # The model must choose between 3 classes.
+    n_classes=3)
+
+Previous layers: input layer, middle layers called hidden layers, neural network, output layer
+
+
+
+CSV_COLUMN_NAMES = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'Species']
+SPECIES = ['Setosa', 'Versicolor', 'Virginica']
+# Lets define some constants to help us later on
+
+train_path = tf.keras.utils.get_file(
+    "iris_training.csv", "https://storage.googleapis.com/download.tensorflow.org/data/iris_training.csv")
+test_path = tf.keras.utils.get_file(
+    "iris_test.csv", "https://storage.googleapis.com/download.tensorflow.org/data/iris_test.csv")
+
+train = pd.read_csv(train_path, names=CSV_COLUMN_NAMES, header=0) #apply column names, row 0 is header
+test = pd.read_csv(test_path, names=CSV_COLUMN_NAMES, header=0)
+# Here we use keras (a module inside of TensorFlow) to grab our datasets and read them into a pandas dataframe
+
+def input_fn(features, labels, training=True, batch_size=256): #no epochs and batch size is different
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels)) #pass in features and labels
+
+    # Shuffle and repeat if you are in training mode.
+    if training:
+        dataset = dataset.shuffle(1000).repeat() #shuffle info and repeat that process
+    
+    return dataset.batch(batch_size) #256
+# Feature columns describe how to use the input.
+my_feature_columns = []
+for key in train.keys(): #loop through keys in training data set, gives all columns
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key)) #equal to key looping through
+
+# Build a DNN with 2 hidden layers with 30 and 10 hidden nodes each.
+classifier = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    # Two hidden layers of 30 and 10 nodes respectively.
+    hidden_units=[30, 10],
+    # The model must choose between 3 classes.
+    n_classes=3)
+
+classifier.train(
+    input_fn=lambda: input_fn(train, train_y, training=True),
+    steps=5000) #go through data set until 5000 things have been looked at
+# We include a lambda to avoid creating an inner function previously
+
+
+INFO:tensorflow:Calling model_fn.
+WARNING:tensorflow:Layer dnn is casting an input tensor from dtype float64 to the layer's dtype of float32, which is new behavior in TensorFlow 2.  The layer has dtype float32 because it's dtype defaults to floatx.
+
+If you intended to run this layer in float32, you can safely ignore this warning. If in doubt, this warning is likely only an issue if you are porting a TensorFlow 1.X model to TensorFlow 2.
+
+To change all layers to have dtype float64 by default, call `tf.keras.backend.set_floatx('float64')`. To change just this layer, pass dtype='float64' to the layer constructor. If you are the author of this layer, you can disable autocasting by passing autocast=False to the base Layer constructor.
+
+INFO:tensorflow:Done calling model_fn.
+INFO:tensorflow:Create CheckpointSaverHook.
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+INFO:tensorflow:Calling checkpoint listeners before saving checkpoint 0...
+INFO:tensorflow:Saving checkpoints for 0 into /tmp/tmpqaqtrlgy/model.ckpt.
+INFO:tensorflow:Calling checkpoint listeners after saving checkpoint 0...
+INFO:tensorflow:loss = 1.1511875, step = 0
+INFO:tensorflow:global_step/sec: 497.034
+INFO:tensorflow:loss = 0.9358924, step = 100 (0.208 sec)
+INFO:tensorflow:global_step/sec: 636.632
+INFO:tensorflow:loss = 0.90521353, step = 200 (0.154 sec)
+INFO:tensorflow:global_step/sec: 654.875
+INFO:tensorflow:loss = 0.8495918, step = 300 (0.153 sec)
+INFO:tensorflow:global_step/sec: 651.748
+INFO:tensorflow:loss = 0.82983136, step = 400 (0.153 sec)
+INFO:tensorflow:global_step/sec: 655.704
+INFO:tensorflow:loss = 0.7790096, step = 500 (0.154 sec)
+INFO:tensorflow:global_step/sec: 667.452
+INFO:tensorflow:loss = 0.7574419, step = 600 (0.149 sec)
+INFO:tensorflow:global_step/sec: 675.438
+INFO:tensorflow:loss = 0.7266582, step = 700 (0.148 sec)
+INFO:tensorflow:global_step/sec: 666.098
+INFO:tensorflow:loss = 0.7117815, step = 800 (0.150 sec)
+INFO:tensorflow:global_step/sec: 659.401
+INFO:tensorflow:loss = 0.6849373, step = 900 (0.150 sec)
+INFO:tensorflow:global_step/sec: 664.227
+INFO:tensorflow:loss = 0.6696919, step = 1000 (0.150 sec)
+INFO:tensorflow:global_step/sec: 674.756
+INFO:tensorflow:loss = 0.6453049, step = 1100 (0.151 sec)
+INFO:tensorflow:global_step/sec: 664.265
+INFO:tensorflow:loss = 0.63444245, step = 1200 (0.150 sec)
+INFO:tensorflow:global_step/sec: 646.941
+INFO:tensorflow:loss = 0.61837286, step = 1300 (0.155 sec)
+INFO:tensorflow:global_step/sec: 675.566
+INFO:tensorflow:loss = 0.60927534, step = 1400 (0.149 sec)
+INFO:tensorflow:global_step/sec: 693.653
+INFO:tensorflow:loss = 0.59321785, step = 1500 (0.144 sec)
+INFO:tensorflow:global_step/sec: 643.728
+INFO:tensorflow:loss = 0.5786046, step = 1600 (0.155 sec)
+INFO:tensorflow:global_step/sec: 640.974
+INFO:tensorflow:loss = 0.5679003, step = 1700 (0.156 sec)
+INFO:tensorflow:global_step/sec: 668.473
+INFO:tensorflow:loss = 0.55420506, step = 1800 (0.147 sec)
+INFO:tensorflow:global_step/sec: 683.02
+INFO:tensorflow:loss = 0.51620936, step = 1900 (0.149 sec)
+INFO:tensorflow:global_step/sec: 668.192
+INFO:tensorflow:loss = 0.5385388, step = 2000 (0.149 sec)
+INFO:tensorflow:global_step/sec: 689.724
+INFO:tensorflow:loss = 0.523809, step = 2100 (0.143 sec)
+INFO:tensorflow:global_step/sec: 674.861
+INFO:tensorflow:loss = 0.50772285, step = 2200 (0.150 sec)
+INFO:tensorflow:global_step/sec: 645.258
+INFO:tensorflow:loss = 0.49664536, step = 2300 (0.155 sec)
+INFO:tensorflow:global_step/sec: 664.988
+INFO:tensorflow:loss = 0.49152842, step = 2400 (0.148 sec)
+INFO:tensorflow:global_step/sec: 676.346
+INFO:tensorflow:loss = 0.4791621, step = 2500 (0.150 sec)
+INFO:tensorflow:global_step/sec: 682.166
+INFO:tensorflow:loss = 0.46931824, step = 2600 (0.146 sec)
+INFO:tensorflow:global_step/sec: 632.973
+INFO:tensorflow:loss = 0.46762398, step = 2700 (0.159 sec)
+INFO:tensorflow:global_step/sec: 666.066
+INFO:tensorflow:loss = 0.44671822, step = 2800 (0.148 sec)
+INFO:tensorflow:global_step/sec: 663.873
+INFO:tensorflow:loss = 0.44892073, step = 2900 (0.151 sec)
+INFO:tensorflow:global_step/sec: 639.968
+INFO:tensorflow:loss = 0.44627833, step = 3000 (0.159 sec)
+INFO:tensorflow:global_step/sec: 676.9
+INFO:tensorflow:loss = 0.4288814, step = 3100 (0.147 sec)
+INFO:tensorflow:global_step/sec: 658.251
+INFO:tensorflow:loss = 0.43346274, step = 3200 (0.150 sec)
+INFO:tensorflow:global_step/sec: 664.476
+INFO:tensorflow:loss = 0.42365474, step = 3300 (0.153 sec)
+INFO:tensorflow:global_step/sec: 680.291
+INFO:tensorflow:loss = 0.41678685, step = 3400 (0.145 sec)
+INFO:tensorflow:global_step/sec: 682.509
+INFO:tensorflow:loss = 0.41475928, step = 3500 (0.150 sec)
+INFO:tensorflow:global_step/sec: 564.669
+INFO:tensorflow:loss = 0.40962964, step = 3600 (0.178 sec)
+INFO:tensorflow:global_step/sec: 643.631
+INFO:tensorflow:loss = 0.40175164, step = 3700 (0.154 sec)
+INFO:tensorflow:global_step/sec: 675.225
+INFO:tensorflow:loss = 0.39052343, step = 3800 (0.148 sec)
+INFO:tensorflow:global_step/sec: 666.891
+INFO:tensorflow:loss = 0.39769873, step = 3900 (0.150 sec)
+INFO:tensorflow:global_step/sec: 666.438
+INFO:tensorflow:loss = 0.386145, step = 4000 (0.148 sec)
+INFO:tensorflow:global_step/sec: 685.811
+INFO:tensorflow:loss = 0.39405277, step = 4100 (0.146 sec)
+INFO:tensorflow:global_step/sec: 682.425
+INFO:tensorflow:loss = 0.37922394, step = 4200 (0.148 sec)
+INFO:tensorflow:global_step/sec: 661.11
+INFO:tensorflow:loss = 0.37118322, step = 4300 (0.150 sec)
+INFO:tensorflow:global_step/sec: 670.221
+INFO:tensorflow:loss = 0.36706787, step = 4400 (0.149 sec)
+INFO:tensorflow:global_step/sec: 681.885
+INFO:tensorflow:loss = 0.3653447, step = 4500 (0.146 sec)
+INFO:tensorflow:global_step/sec: 682.826
+INFO:tensorflow:loss = 0.3557425, step = 4600 (0.147 sec)
+INFO:tensorflow:global_step/sec: 665.897
+INFO:tensorflow:loss = 0.36362734, step = 4700 (0.152 sec)
+INFO:tensorflow:global_step/sec: 671.864
+INFO:tensorflow:loss = 0.3526679, step = 4800 (0.149 sec)
+INFO:tensorflow:global_step/sec: 662.965
+INFO:tensorflow:loss = 0.35308143, step = 4900 (0.151 sec)
+INFO:tensorflow:Calling checkpoint listeners before saving checkpoint 5000...
+INFO:tensorflow:Saving checkpoints for 5000 into /tmp/tmpqaqtrlgy/model.ckpt.
+INFO:tensorflow:Calling checkpoint listeners after saving checkpoint 5000...
+INFO:tensorflow:Loss for final step: 0.34763944. #high which is bad
+<tensorflow_estimator.python.estimator.canned.dnn.DNNClassifierV2 at 0x7f6807b4ca20>
+
+provides output while training
+for small models doesn't matter much but when training massive models with terabytes of data might care more
+lower loss number is the better
+how many steps per second (step = 4900)
+
+classifier.train(
+    input_fn=lambda: input_fn(train, train_y, training=True),
+    steps=5000)
+# We include a lambda to avoid creating an inner function previously
+
+classifier.evaluate(input_fn=lambda: input_fn(test, test_y, training=False))
+print('\nTest set accuraccy: {accuracy:0.3f}\n'.format(**eval_result))
+
+eval_result = classifier.evaluate(input_fn=lambda: input_fn(test, test_y, training=False))
+print('\nTest set accuraccy: {accuracy:0.3f}\n'.format(**eval_result))
+Run
+est set accuraccy: 0.967
+
+WARNING:tensorflow:From /usr/local/lib/python3.10/dist-packages/tensorflow/python/training/saver.py:1176: get_checkpoint_mtimes (from tensorflow.python.checkpoint.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file utilities to get mtimes.
+
+
+eval_result = classifier.evaluate(
+    input_fn=lambda: input_fn(test, test_y, training=False))
+
+print('\nTest set accuracy: {accuracy:0.3f}\n'.format(**eval_result))
+RUN
+Test set accuracy: 0.967
+
+Predictions
+Now that we have a trained model it's time to use it to make predictions. I've written a little script below that allows you to type the features of a flower and see a prediction for its class.
+
+def input_fn(features, batch_size=256):
+    # Convert the inputs to a Dataset without labels.
+    return tf.data.Dataset.from_tensor_slices(dict(features)).batch(batch_size) #create data set from features that's a dict, batch with batch size, no y value or labels because label not known and want model to give answer
+
+features = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth']
+predict = {} #predict dict
+
+print("Please type numeric values as prompted.")
+for feature in features: #for each feature wait to get valid response, valid response added to dict
+  valid = True
+  while valid: 
+    val = input(feature + ": ")
+    if not val.isdigit(): valid = False
+
+  predict[feature] = [float(val)] #features equal to list that has what that value is, predict method from tensor flow predict for multiple things not one value, even if one value it needs to be put inside list because is expecting more than one value. in the list has multiple values each representing different row or new flower to make prediction for
+
+predictions = classifier.predict(input_fn=lambda: input_fn(predict)) #input_fn from above
+for pred_dict in predictions: #every prediction comes back as dict 
+    class_id = pred_dict['class_ids'][0]
+    probability = pred_dict['probabilities'][class_id]
+
+    print('Prediction is "{}" ({:.1f}%)'.format( #format from tensorFlow 
+        SPECIES[class_id], 100 * probability)) #gives actual integer value
+
+Run
+Please type numeric values as prompted.
+SepalLength: 2.4
+
+Please type numeric values as prompted.
+SepalLength: 2.4
+SepalWidth: 2.6
+PetalLength: 6.5
+PetalWidth: 6.3
+Prediction is "Virginica" (100.0%) #chance that it is the prediction
+
+
+
+
+
+def input_fn(features, batch_size=256):
+    # Convert the inputs to a Dataset without labels.
+    return tf.data.Dataset.from_tensor_slices(dict(features)).batch(batch_size)
+
+features = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth']
+predict = {}
+
+print("Please type numeric values as prompted.")
+for feature in features:
+  valid = True
+  while valid: 
+    val = input(feature + ": ")
+    if not val.isdigit(): valid = False
+
+  predict[feature] = [float(val)]
+
+predictions = classifier.predict(input_fn=lambda: input_fn(predict))
+for pred_dict in predictions:
+    print(pred_dict) #added to walk through last steps
+    class_id = pred_dict['class_ids'][0]
+    probability = pred_dict['probabilities'][class_id]
+
+    print('Prediction is "{}" ({:.1f}%)'.format(
+        SPECIES[class_id], 100 * probability))
+
+Run
+Please type numeric values as prompted.
+SepalLength: 1.4
+SepalWidth: 2.3
+PetalLength: 4.5
+PetalWidth: 4.7
+#dictionary, 3 probabilities one for each class, class ids tell what class id it predict is a flower [2] 77% is at index 2 and thinks is class2 or virginica in classifications above
+{'logits': array([-4.6769047 , -0.62188417,  4.9112573 ], dtype=float32), 'probabilities': array([6.826076e-05, 3.937711e-03, 9.959940e-01], dtype=float32), 'class_ids': array([2]), 'classes': array([b'2'], dtype=object), 'all_class_ids': array([0, 1, 2], dtype=int32), 'all_classes': array([b'0', b'1', b'2'], dtype=object)} 
+Prediction is "Virginica" (99.6%)
+
+
+# Here is some example input and expected classes you can try above
+expected = ['Setosa', 'Versicolor', 'Virginica']
+predict_x = {
+    'SepalLength': [5.1, 5.9, 6.9], #value 1 is Setosa, value 2 Veriscolor, value 3 Virginica
+    'SepalWidth': [3.3, 3.0, 3.1],
+    'PetalLength': [1.7, 4.2, 5.4],
+    'PetalWidth': [0.5, 1.5, 2.1],
+}
+
+
+
+
+
+Clustering
+Now that we've covered regression and classification it's time to talk about clustering data!
+
+Clustering is a Machine Learning technique that involves the grouping of data points. In theory, data points that are in the same group should have similar properties and/or features, while data points in different groups should have highly dissimilar properties and/or features. (https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68)
+
+Unfortunalty there are issues with the current version of TensorFlow and the implementation for KMeans. This means we cannot use KMeans without writing the algorithm from scratch. We aren't quite at that level yet, so we'll just explain the basics of clustering for now.
+
+Basic Algorithm for K-Means.
+Step 1: Randomly pick K points to place K centroids
+Step 2: Assign all the data points to the centroids by distance. The closest centroid to a point is the one it is assigned to.
+Step 3: Average all the points belonging to each centroid to find the middle of those clusters (center of mass). Place the corresponding centroids into that position.
+Step 4: Reassign every point once again to the closest centroid.
+Step 5: Repeat steps 3-4 until no point changes which centroid it belongs to.
+Please refer to the video for an explanation of KMeans clustering.
+
+
+K-centroids are where clusters exist
+k = 3
+placement is close to clusters but completely random
+
+for every data point find Euclidean distance or manhatten distance to all the centroids
+data point is linked to closest centroid
+data point 1 is data point 1 because it is closest to centroid 1 out of 3
+every data point applies this
+after this centroids are moved to middle of data points also known as Center of Mass that has same numbers
+
+Repeat process and reassign all points to new closest centroid
+keep repeating process until none of the data pont's centroid numbers are chaging
+
+When cetroids are in middle of data point's numbers as much as possible it is now called Cluster
+
+for new data points a prediction is made to which cluster it is a part of by plotting data point and finding which cluster centroid it is closest to
+this can be done for any new data point
+output is label number of cluster
+
+number of clusters has to be defined inside a variable K
+Some algorithms could determine best amount of clusters for specific data
+
+
+
+
+
+
+
+
+
+Hidden Markov Models
+
+
+Deals with probability distributions
+Predict wheather on any given day with probability of different events occurring.
+Hidden Markov Model allows future predictions of weather given probabilities discovered.
+Sometimes user might have huge data set and calulate probability of things occurring based on data set.
+
+Hot days and cold days are hidden stats because they aren't accessed or looked at while interacting with model.
+What is looked at is observations.
+an observable probability is weather being between 5-15 degrees celsius with an average temp of 11 degrees.
+is previous usage of data what was used was 100 or 1,000s of entries of row or data points for model to train, Hidden Markov Models does not use this.
+All that is needed is constant values for probability, transition distribution and oversevation distribution.
+
+States, Observations and Transitions
+States like Warm cold, High low, red or blue
+could have only 1 state
+They're called hidden because they aren't directly observed
+
+Observation
+fact that during hot day 100% true tim is happy although what could be observed is 80% of time Tim is happy and 20% Tim is sad.
+These are what are known as different observations of each state and probabilities of each state occurrring
+
+Outcome 
+Means there's no probaility because there's 100% chance of event occurring.
+
+Transitions
+Each state has probability to find likelihood of transitioning to different state.
+Example hot day percentage chance that next day would be a cold day and vice versa.
+So there's a probability of transitioning into different state and for each state could transition into every other state or defined set of states given certain probaility
+
+Example
+Hot day - has 20% of transitioning to cold day and an 80% chance of transitioning to another hot day
+Cold day - 30% chance of transitioning to hot day and a 70% chance of transitioning to another cold day
+
+Ovbservation
+Each day has a list of Observations called States
+S1 = Hot day (name doesn't matter)
+S2 = Cold day
+
+Transition probability is known but now need Observations proabbility or distribution for this.
+Hot day - Obervationn is temp could be between 15 and 25 degrees Celsius with average temp of 20
+
+Observation:
+Mean: (average) = 20
+Distribution: Min: 15, Max: 25 (standard deviation)
+
+Standard Deviation
+Mean is middle point or most common event that could occur
+There's a probability of hitting different temps when moving to left and right of value.
+On deviation curve somewhere on left is 15 and on right 25
+these numbers are where the end of curve is located
+Model figures out things to do with this information
+
+Cold day:
+Distribution - Mean: 5, Min: -5, Max: 15
+This is dealing with standard deviation 
+
+Straight percentage observations can also be used for exmaple:
+20% chance Tim is happy or 80% cahnce Tim is sad.
+Probabilities that could be had as obseervation probabilities in model.
+
+Point of Hidden Markov Model is to predict future events based on past events.
+So once proability distribution is known and want to predict weather for next week, model could be used to do so.
+
+
+
+
+"The Hidden Markov Model is a finite set of states, each of which is associated with a (generally multidimensional) probability distribution []. Transitions among the states are governed by a set of probabilities called transition probabilities." (http://jedlik.phy.bme.hu/~gerjanos/HMM/node4.html)
+
+A hidden markov model works with probabilities to predict future events or states. In this section we will learn how to create a hidden markov model that can predict the weather.
+
+This section is based on the following TensorFlow tutorial. https://www.tensorflow.org/probability/api_docs/python/tfp/distributions/HiddenMarkovModel
+
+Data
+Let's start by discussing the type of data we use when we work with a hidden markov model.
+
+In the previous sections we worked with large datasets of 100's of different entries. For a markov model we are only interested in probability distributions that have to do with states.
+
+We can find these probabilities from large datasets or may already have these values. We'll run through an example in a second that should clear some things up, but let's discuss the components of a markov model.
+
+States: In each markov model we have a finite set of states. These states could be something like "warm" and "cold" or "high" and "low" or even "red", "green" and "blue". These states are "hidden" within the model, which means we do not direcly observe them.
+
+Observations: Each state has a particular outcome or observation associated with it based on a probability distribution. An example of this is the following: On a hot day Tim has a 80% chance of being happy and a 20% chance of being sad.
+
+Transitions: Each state will have a probability defining the likelyhood of transitioning to a different state. An example is the following: a cold day has a 30% chance of being followed by a hot day and a 70% chance of being follwed by another cold day.
+
+To create a hidden markov model we need.
+
+
+
+
+
+Centeroid stands for where cluster is defined
+
+States
+Observation Distribution
+Transition Distribution
+For our purpose we will assume we already have this information available as we attempt to predict the weather on a given day.
+
+
+%tensorflow_version 2.x  # this line is not required unless you are in a notebook
+
+!pip install tensorflow_probability==0.8.0rc0 --user --upgrade
+
+import tensorflow_probability as tfp  # We are using a different module from tensorflow this time
+import tensorflow as tf
+
+
+Weather Model
+Taken direclty from the TensorFlow documentation (https://www.tensorflow.org/probability/api_docs/python/tfp/distributions/HiddenMarkovModel).
+
+We will model a simple weather system and try to predict the temperature on each day given the following information.
+
+Cold days are encoded by a 0 and hot days are encoded by a 1.
+The first day in our sequence has an 80% chance of being cold.
+A cold day has a 30% chance of being followed by a hot day.
+A hot day has a 20% chance of being followed by a cold day.
+On each day the temperature is normally distributed with mean and standard deviation 0 and 5 on a cold day and mean and standard deviation 15 and 10 on a hot day.
+If you're unfamiliar with standard deviation it can be put simply as the range of expected values.
+
+In this example, on a hot day the average temperature is 15 and ranges from 5 to 25.
+
+To model this in TensorFlow we will do the following.
+
+
+tfd = tfp.distributions  # making a shortcut for later on
+initial_distribution = tfd.Categorical(probs=[0.2, 0.8])  # Refer to point 2 above
+transition_distribution = tfd.Categorical(probs=[[0.5, 0.5],
+                                                 [0.2, 0.8]])  # refer to points 3 and 4 above
+observation_distribution = tfd.Normal(loc=[0., 15.], scale=[5., 10.])  # refer to point 5 above
+
+# the loc argument represents the mean and the scale is the standard devitation
+
+model = tfd.HiddenMarkovModel(
+    initial_distribution=initial_distribution,
+    transition_distribution=transition_distribution,
+    observation_distribution=observation_distribution,
+    num_steps=7)
+
+mean = model.mean()
+
+# due to the way TensorFlow works on a lower level we need to evaluate part of the graph
+# from within a session to see the value of this tensor
+
+# in the new version of tensorflow we need to use tf.compat.v1.Session() rather than just tf.Session()
+with tf.compat.v1.Session() as sess:  
+  print(mean.numpy())
+
+
+
+Conclusion
+So that's it for the core learning algorithms in TensorFlow. Hopefully you've learned about a few interesting tools that are easy to use! To practice I'd encourage you to try out some of these algorithms on different datasets.
+
+Sources
+Chen, James. “Line Of Best Fit.” Investopedia, Investopedia, 29 Jan. 2020, www.investopedia.com/terms/l/line-of-best-fit.asp.
+“Tf.feature_column.categorical_column_with_vocabulary_list.” TensorFlow, www.tensorflow.org/api_docs/python/tf/feature_column/categorical_column_with_vocabulary_list?version=stable.
+“Build a Linear Model with Estimators  :   TensorFlow Core.” TensorFlow, www.tensorflow.org/tutorials/estimator/linear.
+Staff, EasyBib. “The Free Automatic Bibliography Composer.” EasyBib, Chegg, 1 Jan. 2020, www.easybib.com/project/style/mla8?id=1582473656_5e52a1b8c84d52.80301186.
+Seif, George. “The 5 Clustering Algorithms Data Scientists Need to Know.” Medium, Towards Data Science, 14 Sept. 2019, https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68.
+Definition of Hidden Markov Model, http://jedlik.phy.bme.hu/~gerjanos/HMM/node4.html.
+“Tfp.distributions.HiddenMarkovModel  :   TensorFlow Probability.” TensorFlow, www.tensorflow.org/probability/api_docs/python/tfp/distributions/HiddenMarkovModel.
+
+
+
+%tensorflow_version 2.x  # this line is not required unless you are in a notebook
+
+!pip install tensorflow_probability==0.8.0rc0 --user --upgrade #restart runtime after this command and continue on to imports
+
+import tensorflow_probability as tfp  # We are using a different module from tensorflow this time that deals with probability
+import tensorflow as tf #make sure version above is compatible with tensorFlow
+
+tfd = tfp.distributions  # making a shortcut for later on, tensorFlow probability distribution model
+initial_distribution = tfd.Categorical(probs=[0.2, 0.8])  # Refer to point 2 above, probability of 80% and 20%. First day in sequence has 80% chance of being cold and 20% chance after
+transition_distribution = tfd.Categorical(probs=[[0.5, 0.5], #2 states so 2 probabilities of landing on each state at beginning of sequence, transition probability. 70% chance of cold day again and 30% chance of hot day
+                                                 [0.2, 0.8]])  # refer to points 3 and 4 above
+observation_distribution = tfd.Normal(loc=[0., 15.], scale=[5., 10.])  # refer to point 5 above. when doing standard deviation loc stands for average or mean - 0 on hot day and 15 on cold day. Standard deviation on cold day is 5 so range from -5 to 5 degrees and on hot day is 10 so range from 5 to 25 degrees and average temp is 15.
+
+# the loc argument represents the mean and the scale is the standard devitation
+
+model = tfd.HiddenMarkovModel(
+    initial_distribution=initial_distribution,
+    transition_distribution=transition_distribution,
+    observation_distribution=observation_distribution,
+    num_steps=7) #how many days to predict so number of times to step through probability cycle and run model.
+
+
+mean = model.mean() #calculates probability from model. model.mean is partially defined Tensor. Tensors are partially defined computations. to get value from this use lines below.
+
+# due to the way TensorFlow works on a lower level we need to evaluate part of the graph
+# from within a session to see the value of this tensor
+
+# in the new version of tensorflow we need to use tf.compat.v1.Session() rather than just tf.Session()
+with tf.compat.v1.Session() as sess:  #create new session in TensorFlow. use to run session in new version of TensorFlow. sess keyword doesn't matter
+  print(mean.numpy()) #run this part of graph to print out value. mean.numpy get value from mean = model.mean().
+Run:
+[12.       11.1      10.83     10.748999 10.724699 10.71741  10.715222]
+Starts at 12 degrees and following temperatures are for next days
+No training so calculations are same every run.
+
+
+Changing values
+
+%tensorflow_version 2.x  # this line is not required unless you are in a notebook
+!pip install tensorflow_probability==0.8.0rc0 --user --upgrade
+
+import tensorflow_probability as tfp  # We are using a different module from tensorflow this time
+import tensorflow as tf
+
+tfd = tfp.distributions  # making a shortcut for later on
+initial_distribution = tfd.Categorical(probs=[0.5, 0.5])  # Refer to point 2 above, 50% and 50% winds up making higher temp prediction. switching values above changes temperature lower
+transition_distribution = tfd.Categorical(probs=[[0.5, 0.5],
+                                                 [0.2, 0.8]])  # refer to points 3 and 4 above
+observation_distribution = tfd.Normal(loc=[0., 15.], scale=[5., 10.])  # refer to point 5 above
+
+# the loc argument represents the mean and the scale is the standard devitation
+
+model = tfd.HiddenMarkovModel(
+    initial_distribution=initial_distribution,
+    transition_distribution=transition_distribution,
+    observation_distribution=observation_distribution,
+    num_steps=7)
+
+
+More days this goes on less accurate it becomes like predicting wheather year in advance
+
+
+
+
+
